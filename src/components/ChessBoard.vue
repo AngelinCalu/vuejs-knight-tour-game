@@ -1,4 +1,5 @@
 <template>
+    <div>
     <div class="relative grid grid-cols-{{board.length}} border-2 border-gray-800 m-4 max-w-max">
         <div v-if="!hasLegalMoves" class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-25">
             <div class="p-5 rounded-md shadow-xl text-center font-bold text-blue-800 opacity-100 bg-blue-200 border select-none">
@@ -16,7 +17,7 @@
             <div v-for="(square, columnIndex) in row" :key="columnIndex" class="flex flex-col">
                 <div
                     @click="handleSquareClick(rowIndex, columnIndex)"
-                    class="w-24 h-24 flex items-center justify-center select-none border border-gray-400 text-3xl cursor-pointer"
+                    class="w-14 h-14 sm:w-20 sm:h-20 md:w-22 md:h-22 lg:w-24 lg:h-24 flex items-center justify-center select-none border border-gray-400 text-3xl cursor-pointer"
                     :class="squareClass(rowIndex, columnIndex)"
                 >
                     {{ square !== 0 ? square : "" }}
@@ -24,6 +25,11 @@
             </div>
         </div>
     </div>
+    <div class="m-4 max-w-max">
+        <button @click="resetGame" class="mt-4 bg-blue-500 hover:bg-blue-700 font-normal text-sm text-white py-2 px-4 rounded">Reset</button>
+        <button @click="copyBoardState" class="mt-4 ml-2 bg-blue-500 hover:bg-blue-700 font-normal text-sm text-white py-2 px-4 rounded">Share</button>
+    </div>
+</div>
 </template>
 
 <script>
